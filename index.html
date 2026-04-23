@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laboratory Analyte Dynamics Viewer</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    body { font-family: "Segoe UI", Helvetica, sans-serif; margin: 0; background: #f8faf9; color: #1f2a1f; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+    h2 { margin: 0 0 6px 0; }
+    p.desc { margin: 0 0 14px 0; color: #445; font-size: 14px; }
+    .controls { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    label { display: block; font-size: 13px; color: #364; margin-bottom: 5px; }
+    select { width: 100%; padding: 8px; border: 1px solid #b9cdb9; border-radius: 6px; background: white; }
+    #info-text { margin-bottom: 8px; color: #444; font-size: 14px; }
+    #plot { height: 82vh; min-height: 500px; border: 1px solid #e2ece2; border-radius: 8px; background: white; }
+    .error { color: #b00020; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Laboratory analyte dynamics plot viewer</h2>
+    <p class="desc">This static dashboard visualizes laboratory analyte dynamics over time. Select an analyte and plot type to inspect time-window behavior, admission-to-routine transitions, quartile-stratified trends, or confounder subgroup differences.</p>
+
+    <div class="controls">
+      <div>
+        <label for="test-select">Analyte / Test</label>
+        <select id="test-select"></select>
+      </div>
+      <div>
+        <label for="plot-type-select">Plot Type</label>
+        <select id="plot-type-select">
+          <option value="time_windows">Time windows</option>
+          <option value="admission_routine">Admission to routine</option>
+          <option value="quartiles">Quartiles</option>
+          <option value="confounder">Confounder</option>
+        </select>
+      </div>
+      <div>
+        <label for="confounder-select">Confounder</label>
+        <select id="confounder-select" disabled></select>
+      </div>
+    </div>
+
+    <div id="info-text"></div>
+    <div id="plot"></div>
+  </div>
+
+  <script>
+    const state = {
+      manifest: null,
+      testId: null,
+      plotType: "time_windows",
+      confounder: null,
+    };
+
+    const testSelect = document.getElementById("test-select");
+    const plotTypeSelect = document.getElementById("plot-type-select");
+    const confounderSelect = document.getElementById("confounder-select");
+    const infoText = document.getElementById("info-text");
+    const plotDiv = document.getElementById("plot");
+
+    function clearPlot(msg) {
+      plotDiv.innerHTML = `<div class="error" style="padding:16px;">${msg}</div>`;
+    }
+
+    function updateConfounderOptions() {
+      const confMap = state.manifest?.confoundersByTest?.[String(state.testId)] || [];
+      confounderSelect.innerHTML = "";
+      if (state.plotType === "confounder" && confMap.length > 0) {
+        confounderSelect.disabled = false;
+        for (const c of confMap) {
+          const meta = state.manifest.confounderDisplay[c] || { name: c.toUpperCase() };
+          const opt = document.createElement("option");
+          opt.value = c;
+          opt.textContent = meta.name;
+          confounderSelect.appendChild(opt);
+        }
+        if (!confMap.includes(state.confounder)) {
+          state.confounder = confMap[0];
+        }
+        confounderSelect.value = state.confounder;
+      } else {
+        confounderSelect.disabled = true;
+        state.confounder = null;
+      }
+    }
+
+    async function renderSelectedFigure() {
+      if (!state.testId) {
+        clearPlot("No analyte available.");
+        return;
+      }
+
+      let key = `${state.testId}__${state.plotType}`;
+      if (state.plotType === "confounder") {
+        if (!state.confounder) {
+          clearPlot("No confounder available for selected test.");
+          infoText.textContent = "No confounder files found for this test.";
+          return;
+        }
+        key = `${key}__${state.confounder}`;
+      }
+
+      const figPath = state.manifest.figureFiles[key];
+      if (!figPath) {
+        clearPlot(`Figure not found for selection: ${key}`);
+        infoText.textContent = "Figure file missing. Re-run build_static_site.py.";
+        return;
+      }
+
+      try {
+        const res = await fetch(figPath);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const figure = await res.json();
+        await Plotly.react(plotDiv, figure.data, figure.layout, { responsive: true, displaylogo: false });
+
+        if (state.plotType === "time_windows") {
+          infoText.textContent = "Three sequential windows are shown: early, intermediate, late.";
+        } else if (state.plotType === "admission_routine") {
+          infoText.textContent = "Admission-to-routine subset from model_<test>_admission_routine_0.* files.";
+        } else if (state.plotType === "quartiles") {
+          infoText.textContent = "Four subplots split by quartiles from model_<test>_quartiles_<i>.* files.";
+        } else {
+          const meta = state.manifest.confounderDisplay[state.confounder] || { name: state.confounder, low: "Low", high: "High" };
+          infoText.textContent = `${meta.name}: ${meta.low} vs ${meta.high}.`;
+        }
+      } catch (err) {
+        clearPlot(`Failed to load figure JSON: ${err.message}`);
+      }
+    }
+
+    function populateTests() {
+      testSelect.innerHTML = "";
+      for (const t of state.manifest.tests) {
+        const opt = document.createElement("option");
+        opt.value = String(t.id);
+        opt.textContent = t.label;
+        testSelect.appendChild(opt);
+      }
+      state.testId = state.manifest.tests.length ? state.manifest.tests[0].id : null;
+      if (state.testId !== null) testSelect.value = String(state.testId);
+    }
+
+    async function init() {
+      try {
+        const res = await fetch("manifest.json");
+        if (!res.ok) throw new Error(`manifest HTTP ${res.status}`);
+        state.manifest = await res.json();
+        populateTests();
+        updateConfounderOptions();
+        await renderSelectedFigure();
+      } catch (err) {
+        clearPlot(`Failed to load manifest.json: ${err.message}`);
+      }
+    }
+
+    testSelect.addEventListener("change", async (e) => {
+      state.testId = Number(e.target.value);
+      updateConfounderOptions();
+      await renderSelectedFigure();
+    });
+
+    plotTypeSelect.addEventListener("change", async (e) => {
+      state.plotType = e.target.value;
+      updateConfounderOptions();
+      await renderSelectedFigure();
+    });
+
+    confounderSelect.addEventListener("change", async (e) => {
+      state.confounder = e.target.value;
+      await renderSelectedFigure();
+    });
+
+    init();
+  </script>
+</body>
+</html>

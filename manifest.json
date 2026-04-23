@@ -1,0 +1,320 @@
+{
+  "tests": [
+    {
+      "id": 3024561,
+      "label": "Albumin"
+    },
+    {
+      "id": 3035995,
+      "label": "ALP"
+    },
+    {
+      "id": 3006140,
+      "label": "Bilirubin"
+    },
+    {
+      "id": 3015377,
+      "label": "Calcium"
+    },
+    {
+      "id": 3020564,
+      "label": "Creatinine"
+    },
+    {
+      "id": 3020460,
+      "label": "CRP"
+    },
+    {
+      "id": 42869588,
+      "label": "Hematocrit"
+    },
+    {
+      "id": 40762351,
+      "label": "Hemoglobin"
+    },
+    {
+      "id": 3032080,
+      "label": "INR"
+    },
+    {
+      "id": 3012095,
+      "label": "Magnesium"
+    },
+    {
+      "id": 3003458,
+      "label": "Phosphate"
+    },
+    {
+      "id": 3007461,
+      "label": "Platelets"
+    },
+    {
+      "id": 3000285,
+      "label": "Sodium"
+    },
+    {
+      "id": 43534077,
+      "label": "Urea"
+    },
+    {
+      "id": 3010813,
+      "label": "WBC"
+    }
+  ],
+  "confounderDisplay": {
+    "blood": {
+      "name": "Blood",
+      "low": "None administered",
+      "high": "Administered"
+    },
+    "alb": {
+      "name": "Albumin",
+      "low": "None administered",
+      "high": "Administered"
+    },
+    "crp": {
+      "name": "CRP",
+      "low": "<=25 mg/dl",
+      "high": "> 5 mg/dl"
+    },
+    "fluids": {
+      "name": "Fluids",
+      "low": "<=5000 ml Administered",
+      "high": ">5000 ml Administered"
+    },
+    "crrt": {
+      "name": "CRRT",
+      "low": "Not used",
+      "high": "Used"
+    }
+  },
+  "confoundersByTest": {
+    "3024561": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "3035995": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "3006140": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "3015377": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "3020564": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "3020460": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "42869588": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "40762351": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "3032080": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "3012095": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "3003458": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "3007461": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "3000285": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "43534077": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ],
+    "3010813": [
+      "alb",
+      "blood",
+      "crp",
+      "crrt",
+      "fluids"
+    ]
+  },
+  "figureFiles": {
+    "3024561__time_windows": "figures/3024561__time_windows.json",
+    "3024561__admission_routine": "figures/3024561__admission_routine.json",
+    "3024561__quartiles": "figures/3024561__quartiles.json",
+    "3024561__confounder__alb": "figures/3024561__confounder__alb.json",
+    "3024561__confounder__blood": "figures/3024561__confounder__blood.json",
+    "3024561__confounder__crp": "figures/3024561__confounder__crp.json",
+    "3024561__confounder__crrt": "figures/3024561__confounder__crrt.json",
+    "3024561__confounder__fluids": "figures/3024561__confounder__fluids.json",
+    "3035995__time_windows": "figures/3035995__time_windows.json",
+    "3035995__admission_routine": "figures/3035995__admission_routine.json",
+    "3035995__quartiles": "figures/3035995__quartiles.json",
+    "3035995__confounder__alb": "figures/3035995__confounder__alb.json",
+    "3035995__confounder__blood": "figures/3035995__confounder__blood.json",
+    "3035995__confounder__crp": "figures/3035995__confounder__crp.json",
+    "3035995__confounder__crrt": "figures/3035995__confounder__crrt.json",
+    "3035995__confounder__fluids": "figures/3035995__confounder__fluids.json",
+    "3006140__time_windows": "figures/3006140__time_windows.json",
+    "3006140__admission_routine": "figures/3006140__admission_routine.json",
+    "3006140__quartiles": "figures/3006140__quartiles.json",
+    "3006140__confounder__alb": "figures/3006140__confounder__alb.json",
+    "3006140__confounder__blood": "figures/3006140__confounder__blood.json",
+    "3006140__confounder__crp": "figures/3006140__confounder__crp.json",
+    "3006140__confounder__crrt": "figures/3006140__confounder__crrt.json",
+    "3006140__confounder__fluids": "figures/3006140__confounder__fluids.json",
+    "3015377__time_windows": "figures/3015377__time_windows.json",
+    "3015377__admission_routine": "figures/3015377__admission_routine.json",
+    "3015377__quartiles": "figures/3015377__quartiles.json",
+    "3015377__confounder__alb": "figures/3015377__confounder__alb.json",
+    "3015377__confounder__blood": "figures/3015377__confounder__blood.json",
+    "3015377__confounder__crp": "figures/3015377__confounder__crp.json",
+    "3015377__confounder__crrt": "figures/3015377__confounder__crrt.json",
+    "3015377__confounder__fluids": "figures/3015377__confounder__fluids.json",
+    "3020564__time_windows": "figures/3020564__time_windows.json",
+    "3020564__admission_routine": "figures/3020564__admission_routine.json",
+    "3020564__quartiles": "figures/3020564__quartiles.json",
+    "3020564__confounder__alb": "figures/3020564__confounder__alb.json",
+    "3020564__confounder__blood": "figures/3020564__confounder__blood.json",
+    "3020564__confounder__crp": "figures/3020564__confounder__crp.json",
+    "3020564__confounder__crrt": "figures/3020564__confounder__crrt.json",
+    "3020564__confounder__fluids": "figures/3020564__confounder__fluids.json",
+    "3020460__time_windows": "figures/3020460__time_windows.json",
+    "3020460__admission_routine": "figures/3020460__admission_routine.json",
+    "3020460__quartiles": "figures/3020460__quartiles.json",
+    "3020460__confounder__alb": "figures/3020460__confounder__alb.json",
+    "3020460__confounder__blood": "figures/3020460__confounder__blood.json",
+    "3020460__confounder__crp": "figures/3020460__confounder__crp.json",
+    "3020460__confounder__crrt": "figures/3020460__confounder__crrt.json",
+    "3020460__confounder__fluids": "figures/3020460__confounder__fluids.json",
+    "42869588__time_windows": "figures/42869588__time_windows.json",
+    "42869588__admission_routine": "figures/42869588__admission_routine.json",
+    "42869588__quartiles": "figures/42869588__quartiles.json",
+    "42869588__confounder__alb": "figures/42869588__confounder__alb.json",
+    "42869588__confounder__blood": "figures/42869588__confounder__blood.json",
+    "42869588__confounder__crp": "figures/42869588__confounder__crp.json",
+    "42869588__confounder__crrt": "figures/42869588__confounder__crrt.json",
+    "42869588__confounder__fluids": "figures/42869588__confounder__fluids.json",
+    "40762351__time_windows": "figures/40762351__time_windows.json",
+    "40762351__admission_routine": "figures/40762351__admission_routine.json",
+    "40762351__quartiles": "figures/40762351__quartiles.json",
+    "40762351__confounder__alb": "figures/40762351__confounder__alb.json",
+    "40762351__confounder__blood": "figures/40762351__confounder__blood.json",
+    "40762351__confounder__crp": "figures/40762351__confounder__crp.json",
+    "40762351__confounder__crrt": "figures/40762351__confounder__crrt.json",
+    "40762351__confounder__fluids": "figures/40762351__confounder__fluids.json",
+    "3032080__time_windows": "figures/3032080__time_windows.json",
+    "3032080__admission_routine": "figures/3032080__admission_routine.json",
+    "3032080__quartiles": "figures/3032080__quartiles.json",
+    "3032080__confounder__alb": "figures/3032080__confounder__alb.json",
+    "3032080__confounder__blood": "figures/3032080__confounder__blood.json",
+    "3032080__confounder__crp": "figures/3032080__confounder__crp.json",
+    "3032080__confounder__crrt": "figures/3032080__confounder__crrt.json",
+    "3032080__confounder__fluids": "figures/3032080__confounder__fluids.json",
+    "3012095__time_windows": "figures/3012095__time_windows.json",
+    "3012095__admission_routine": "figures/3012095__admission_routine.json",
+    "3012095__quartiles": "figures/3012095__quartiles.json",
+    "3012095__confounder__alb": "figures/3012095__confounder__alb.json",
+    "3012095__confounder__blood": "figures/3012095__confounder__blood.json",
+    "3012095__confounder__crp": "figures/3012095__confounder__crp.json",
+    "3012095__confounder__crrt": "figures/3012095__confounder__crrt.json",
+    "3012095__confounder__fluids": "figures/3012095__confounder__fluids.json",
+    "3003458__time_windows": "figures/3003458__time_windows.json",
+    "3003458__admission_routine": "figures/3003458__admission_routine.json",
+    "3003458__quartiles": "figures/3003458__quartiles.json",
+    "3003458__confounder__alb": "figures/3003458__confounder__alb.json",
+    "3003458__confounder__blood": "figures/3003458__confounder__blood.json",
+    "3003458__confounder__crp": "figures/3003458__confounder__crp.json",
+    "3003458__confounder__crrt": "figures/3003458__confounder__crrt.json",
+    "3003458__confounder__fluids": "figures/3003458__confounder__fluids.json",
+    "3007461__time_windows": "figures/3007461__time_windows.json",
+    "3007461__admission_routine": "figures/3007461__admission_routine.json",
+    "3007461__quartiles": "figures/3007461__quartiles.json",
+    "3007461__confounder__alb": "figures/3007461__confounder__alb.json",
+    "3007461__confounder__blood": "figures/3007461__confounder__blood.json",
+    "3007461__confounder__crp": "figures/3007461__confounder__crp.json",
+    "3007461__confounder__crrt": "figures/3007461__confounder__crrt.json",
+    "3007461__confounder__fluids": "figures/3007461__confounder__fluids.json",
+    "3000285__time_windows": "figures/3000285__time_windows.json",
+    "3000285__admission_routine": "figures/3000285__admission_routine.json",
+    "3000285__quartiles": "figures/3000285__quartiles.json",
+    "3000285__confounder__alb": "figures/3000285__confounder__alb.json",
+    "3000285__confounder__blood": "figures/3000285__confounder__blood.json",
+    "3000285__confounder__crp": "figures/3000285__confounder__crp.json",
+    "3000285__confounder__crrt": "figures/3000285__confounder__crrt.json",
+    "3000285__confounder__fluids": "figures/3000285__confounder__fluids.json",
+    "43534077__time_windows": "figures/43534077__time_windows.json",
+    "43534077__admission_routine": "figures/43534077__admission_routine.json",
+    "43534077__quartiles": "figures/43534077__quartiles.json",
+    "43534077__confounder__alb": "figures/43534077__confounder__alb.json",
+    "43534077__confounder__blood": "figures/43534077__confounder__blood.json",
+    "43534077__confounder__crp": "figures/43534077__confounder__crp.json",
+    "43534077__confounder__crrt": "figures/43534077__confounder__crrt.json",
+    "43534077__confounder__fluids": "figures/43534077__confounder__fluids.json",
+    "3010813__time_windows": "figures/3010813__time_windows.json",
+    "3010813__admission_routine": "figures/3010813__admission_routine.json",
+    "3010813__quartiles": "figures/3010813__quartiles.json",
+    "3010813__confounder__alb": "figures/3010813__confounder__alb.json",
+    "3010813__confounder__blood": "figures/3010813__confounder__blood.json",
+    "3010813__confounder__crp": "figures/3010813__confounder__crp.json",
+    "3010813__confounder__crrt": "figures/3010813__confounder__crrt.json",
+    "3010813__confounder__fluids": "figures/3010813__confounder__fluids.json"
+  }
+}
