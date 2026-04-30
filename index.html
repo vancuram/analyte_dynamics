@@ -16,12 +16,15 @@
     #info-text { margin-bottom: 8px; color: #444; font-size: 14px; }
     #plot { height: 82vh; min-height: 500px; border: 1px solid #e2ece2; border-radius: 8px; background: white; }
     .error { color: #b00020; font-size: 14px; }
+    @media (max-width: 900px) {
+      .controls { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Laboratory analyte dynamics plot viewer</h2>
-    <p class="desc">This static dashboard visualizes laboratory analyte dynamics over time. Select an analyte and plot type to inspect time-window behavior, admission-to-routine transitions, quartile-stratified trends, or confounder subgroup differences.</p>
+    <p class="desc">This dashboard visualizes laboratory analyte dynamics over time. Select an analyte and plot type to inspect time-window behavior, admission-to-routine transitions, quartile-stratified trends, or confounder subgroup differences.</p>
 
     <div class="controls">
       <div>
@@ -55,6 +58,24 @@
       confounder: null,
     };
 
+    const TEST_UNITS = {
+      3024561: "g/l",
+      3003458: "mmol/l",
+      3006140: "umol/l",
+      3012095: "mmol/l",
+      3032080: "",
+      43534077: "mmol/l",
+      40762351: "g/dl",
+      3020564: "umol/l",
+      3010813: "10^9/l",
+      3007461: "10^9/l",
+      3035995: "IU/l",
+      3015377: "mmol/l",
+      3000285: "mmol/l",
+      3020460: "mg/dl",
+      42869588: "%"
+    };
+
     const testSelect = document.getElementById("test-select");
     const plotTypeSelect = document.getElementById("plot-type-select");
     const confounderSelect = document.getElementById("confounder-select");
@@ -63,6 +84,97 @@
 
     function clearPlot(msg) {
       plotDiv.innerHTML = `<div class="error" style="padding:16px;">${msg}</div>`;
+    }
+
+    function isMobileLayout() {
+      return (window.innerWidth || 1200) < 900;
+    }
+
+    function quantile(sortedArr, q) {
+      if (!sortedArr.length) return null;
+      const pos = (sortedArr.length - 1) * q;
+      const base = Math.floor(pos);
+      const rest = pos - base;
+      if (sortedArr[base + 1] !== undefined) {
+        return sortedArr[base] + rest * (sortedArr[base + 1] - sortedArr[base]);
+      }
+      return sortedArr[base];
+    }
+
+    function applyDefaultYScale(figure) {
+      const values = [];
+      for (const trace of figure.data || []) {
+        const mode = (trace.mode || "").toLowerCase();
+        if (!mode.includes("markers")) continue;
+        if (!Array.isArray(trace.y)) continue;
+        for (const y of trace.y) {
+          const v = Number(y);
+          if (Number.isFinite(v)) values.push(v);
+        }
+      }
+
+      if (values.length < 5) return;
+      values.sort((a, b) => a - b);
+      let yMin = quantile(values, 0.001);
+      let yMax = quantile(values, 0.999);
+      if (yMin === null || yMax === null) return;
+
+      if (yMin === yMax) {
+        const eps = Math.max(1e-6, Math.abs(yMin) * 0.05);
+        yMin -= eps;
+        yMax += eps;
+      }
+
+      figure.layout = figure.layout || {};
+      const axisKeys = Object.keys(figure.layout).filter(k => /^yaxis\d*$/.test(k));
+      if (!axisKeys.length) axisKeys.push("yaxis");
+      for (const key of axisKeys) {
+        figure.layout[key] = figure.layout[key] || {};
+        figure.layout[key].autorange = false;
+        figure.layout[key].range = [yMin, yMax];
+      }
+    }
+
+    function applyYAxisUnits(figure, testId) {
+      figure.layout = figure.layout || {};
+      const unit = TEST_UNITS[testId] || "";
+      const titleText = unit ? `Change from first value [${unit}]` : "Change from first value";
+
+      const axisKeys = Object.keys(figure.layout).filter(k => /^yaxis\d*$/.test(k));
+      if (!axisKeys.length) axisKeys.push("yaxis");
+      for (const key of axisKeys) {
+        figure.layout[key] = figure.layout[key] || {};
+        figure.layout[key].title = figure.layout[key].title || {};
+        figure.layout[key].title.text = titleText;
+      }
+    }
+
+    async function fetchJsonWithRetry(path, retries = 2) {
+      const url = new URL(path, window.location.href).toString();
+      let lastErr = null;
+      for (let i = 0; i <= retries; i++) {
+        const bust = i === 0 ? "" : `${url.includes("?") ? "&" : "?"}retry=${Date.now()}_${i}`;
+        const tryUrl = `${url}${bust}`;
+        try {
+          const res = await fetch(tryUrl, { cache: "no-store" });
+          if (!res.ok) {
+            lastErr = new Error(`HTTP ${res.status} (${res.statusText})`);
+            if ((res.status === 503 || res.status === 429) && i < retries) {
+              await new Promise(r => setTimeout(r, 700 * (i + 1)));
+              continue;
+            }
+            throw lastErr;
+          }
+          return await res.json();
+        } catch (err) {
+          lastErr = err;
+          if (i < retries) {
+            await new Promise(r => setTimeout(r, 700 * (i + 1)));
+            continue;
+          }
+        }
+      }
+      throw lastErr || new Error("Unknown fetch error");
     }
 
     function updateConfounderOptions() {
@@ -94,6 +206,9 @@
       }
 
       let key = `${state.testId}__${state.plotType}`;
+      if (isMobileLayout() && (state.plotType === "time_windows" || state.plotType === "quartiles")) {
+        key = `${key}__mobile`;
+      }
       if (state.plotType === "confounder") {
         if (!state.confounder) {
           clearPlot("No confounder available for selected test.");
@@ -111,23 +226,23 @@
       }
 
       try {
-        const res = await fetch(figPath);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const figure = await res.json();
+        const figure = await fetchJsonWithRetry(figPath, 2);
+        applyDefaultYScale(figure);
+        applyYAxisUnits(figure, state.testId);
         await Plotly.react(plotDiv, figure.data, figure.layout, { responsive: true, displaylogo: false });
 
         if (state.plotType === "time_windows") {
           infoText.textContent = "Three sequential windows are shown: early, intermediate, late.";
         } else if (state.plotType === "admission_routine") {
-          infoText.textContent = "Admission-to-routine subset from model_<test>_admission_routine_0.* files.";
+          infoText.textContent = "Admission-to-routine subset based on first admission measurement and first routine follow-up measurement.";
         } else if (state.plotType === "quartiles") {
-          infoText.textContent = "Four subplots split by quartiles from model_<test>_quartiles_<i>.* files.";
+          infoText.textContent = "Four subplots of admissions split by quartiles of the measurement's first value.";
         } else {
           const meta = state.manifest.confounderDisplay[state.confounder] || { name: state.confounder, low: "Low", high: "High" };
           infoText.textContent = `${meta.name}: ${meta.low} vs ${meta.high}.`;
         }
       } catch (err) {
-        clearPlot(`Failed to load figure JSON: ${err.message}`);
+        clearPlot(`Failed to load figure JSON: ${err.message}. If this is GitHub Pages and persists, check Pages source folder and whether large files are in Git LFS with exhausted bandwidth.`);
       }
     }
 
@@ -145,9 +260,7 @@
 
     async function init() {
       try {
-        const res = await fetch("manifest.json");
-        if (!res.ok) throw new Error(`manifest HTTP ${res.status}`);
-        state.manifest = await res.json();
+        state.manifest = await fetchJsonWithRetry("manifest.json", 2);
         populateTests();
         updateConfounderOptions();
         await renderSelectedFigure();
@@ -171,6 +284,19 @@
     confounderSelect.addEventListener("change", async (e) => {
       state.confounder = e.target.value;
       await renderSelectedFigure();
+    });
+
+    let resizeTimer = null;
+    let lastMobile = isMobileLayout();
+    window.addEventListener("resize", () => {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(async () => {
+        const nowMobile = isMobileLayout();
+        if (nowMobile !== lastMobile) {
+          lastMobile = nowMobile;
+          await renderSelectedFigure();
+        }
+      }, 180);
     });
 
     init();
