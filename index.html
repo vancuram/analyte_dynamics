@@ -24,7 +24,10 @@
 <body>
   <div class="container">
     <h2>Laboratory analyte dynamics plot viewer</h2>
-    <p class="desc">This dashboard visualizes laboratory analyte dynamics over time. Select an analyte and plot type to inspect time-window behavior, admission-to-routine transitions, quartile-stratified trends, or confounder subgroup differences.</p>
+    <p class="desc">This dashboard is complementary to the publication [WILL BE UPDATE] and visualizes laboratory analyte dynamics over time. Data were acquired from databases open databases AmsterdamUMCdb, MIMIC-IV, and HiRID and from Metavision database in Prague University Hospital Královské Vinohrady. Select an analyte and plot type to inspect time-window behavior, admission-to-routine transitions, quartile-stratified trends, or confounder subgroup differences. <br/><br/>
+        All plots present change from the first value to focus on relative dynamics. Time windows presents plots for different part of the hospitalization period. Admission to routine plots show only difference between first acquired measurement and first measurement identified as routine. Quartile plots show trends stratified by quartiles if first obtained measurement, as this was identified as strongest predictor of further change. Confounder plots allow compare dynamics across different subgroups. <br/><br/>
+        Percentile plots are calculated using probability model described in main publication. Maximal amount of 10,000 datapoints is plotted for each plot for performance reasons. Distribution in every timepoint corresponds to skewed Student distribution. 2.5th and 97.5th percentiles would correspond to mean +/- 1.96 * (standard deviation) in normal distribution, but here the percentiles are asymmetric. 16th and 84th percentiles are also available as an option, corresponding to mean +/- 1 standard deviation in normal distribution. 
+    </p>
 
     <div class="controls">
       <div>
