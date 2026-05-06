@@ -10,7 +10,7 @@
     .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
     h2 { margin: 0 0 6px 0; }
     p.desc { margin: 0 0 14px 0; color: #445; font-size: 14px; }
-    .controls { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .controls { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
     label { display: block; font-size: 13px; color: #364; margin-bottom: 5px; }
     select { width: 100%; padding: 8px; border: 1px solid #b9cdb9; border-radius: 6px; background: white; }
     #info-text { margin-bottom: 8px; color: #444; font-size: 14px; }
@@ -44,6 +44,13 @@
         <label for="confounder-select">Confounder</label>
         <select id="confounder-select" disabled></select>
       </div>
+      <div>
+        <label for="percentile-mode-select">Percentile Band</label>
+        <select id="percentile-mode-select">
+          <option value="95">2.5th / 97.5th percentile</option>
+          <option value="68">16th / 84th percentile</option>
+        </select>
+      </div>
     </div>
 
     <div id="info-text"></div>
@@ -56,6 +63,7 @@
       testId: null,
       plotType: "time_windows",
       confounder: null,
+      percentileMode: "95",
     };
 
     const TEST_UNITS = {
@@ -79,6 +87,7 @@
     const testSelect = document.getElementById("test-select");
     const plotTypeSelect = document.getElementById("plot-type-select");
     const confounderSelect = document.getElementById("confounder-select");
+    const percentileModeSelect = document.getElementById("percentile-mode-select");
     const infoText = document.getElementById("info-text");
     const plotDiv = document.getElementById("plot");
 
@@ -218,6 +227,8 @@
         key = `${key}__${state.confounder}`;
       }
 
+      key = `${key}__p${state.percentileMode}`;
+
       const figPath = state.manifest.figureFiles[key];
       if (!figPath) {
         clearPlot(`Figure not found for selection: ${key}`);
@@ -231,15 +242,18 @@
         applyYAxisUnits(figure, state.testId);
         await Plotly.react(plotDiv, figure.data, figure.layout, { responsive: true, displaylogo: false });
 
+        const modeMeta = state.manifest.percentileModes?.[state.percentileMode];
+        const qLabel = modeMeta?.label || "2.5th and 97.5th percentile";
+
         if (state.plotType === "time_windows") {
-          infoText.textContent = "Three sequential windows are shown: early, intermediate, late.";
+          infoText.textContent = `Three sequential windows are shown: early, intermediate, late. Band: ${qLabel}.`;
         } else if (state.plotType === "admission_routine") {
-          infoText.textContent = "Admission-to-routine subset based on first admission measurement and first routine follow-up measurement.";
+          infoText.textContent = `Admission-to-routine subset based on first admission measurement and first routine follow-up measurement. Band: ${qLabel}.`;
         } else if (state.plotType === "quartiles") {
-          infoText.textContent = "Four subplots of admissions split by quartiles of the measurement's first value.";
+          infoText.textContent = `Four subplots of admissions split by quartiles of the measurement's first value. Band: ${qLabel}.`;
         } else {
           const meta = state.manifest.confounderDisplay[state.confounder] || { name: state.confounder, low: "Low", high: "High" };
-          infoText.textContent = `${meta.name}: ${meta.low} vs ${meta.high}.`;
+          infoText.textContent = `${meta.name}: ${meta.low} vs ${meta.high}. Band: ${qLabel}.`;
         }
       } catch (err) {
         clearPlot(`Failed to load figure JSON: ${err.message}. If this is GitHub Pages and persists, check Pages source folder and whether large files are in Git LFS with exhausted bandwidth.`);
@@ -261,6 +275,9 @@
     async function init() {
       try {
         state.manifest = await fetchJsonWithRetry("manifest.json", 2);
+        if (state.manifest.percentileModes && state.manifest.percentileModes[state.percentileMode]) {
+          percentileModeSelect.value = state.percentileMode;
+        }
         populateTests();
         updateConfounderOptions();
         await renderSelectedFigure();
@@ -283,6 +300,11 @@
 
     confounderSelect.addEventListener("change", async (e) => {
       state.confounder = e.target.value;
+      await renderSelectedFigure();
+    });
+
+    percentileModeSelect.addEventListener("change", async (e) => {
+      state.percentileMode = e.target.value;
       await renderSelectedFigure();
     });
 

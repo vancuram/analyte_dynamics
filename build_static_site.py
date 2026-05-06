@@ -44,51 +44,57 @@ def main() -> None:
     manifest = {
         "tests": [{"id": int(opt["value"]), "label": str(opt["label"])} for opt in options],
         "confounderDisplay": app.CONFOUNDER_DISPLAY,
+        "percentileModes": app.PERCENTILE_MODE_META,
         "confoundersByTest": {},
         "figureFiles": {},
     }
+
+    percentile_modes = tuple(app.PERCENTILE_MODE_META.keys())
 
     for opt in options:
         test_id = int(opt["value"])
         confs = app.get_available_confounders_for_test(test_id)
         manifest["confoundersByTest"][str(test_id)] = confs
 
-        tw = app.create_time_windows_plot(test_id)
-        key = f"{test_id}__time_windows"
-        rel = f"figures/{key}.json"
-        save_figure_json(HERE / rel, tw)
-        manifest["figureFiles"][key] = rel
+        for percentile_mode in percentile_modes:
+            suffix = f"__p{percentile_mode}"
 
-        tw_mobile = app.create_time_windows_plot(test_id, mobile=True)
-        key = f"{test_id}__time_windows__mobile"
-        rel = f"figures/{key}.json"
-        save_figure_json(HERE / rel, tw_mobile)
-        manifest["figureFiles"][key] = rel
-
-        ar = app.create_admission_routine_plot(test_id)
-        key = f"{test_id}__admission_routine"
-        rel = f"figures/{key}.json"
-        save_figure_json(HERE / rel, ar)
-        manifest["figureFiles"][key] = rel
-
-        qt = app.create_quartiles_plot(test_id)
-        key = f"{test_id}__quartiles"
-        rel = f"figures/{key}.json"
-        save_figure_json(HERE / rel, qt)
-        manifest["figureFiles"][key] = rel
-
-        qt_mobile = app.create_quartiles_plot(test_id, mobile=True)
-        key = f"{test_id}__quartiles__mobile"
-        rel = f"figures/{key}.json"
-        save_figure_json(HERE / rel, qt_mobile)
-        manifest["figureFiles"][key] = rel
-
-        for conf in confs:
-            cf = app.create_confounder_plot(test_id, conf)
-            key = f"{test_id}__confounder__{conf}"
+            tw = app.create_time_windows_plot(test_id, percentile_mode=percentile_mode)
+            key = f"{test_id}__time_windows{suffix}"
             rel = f"figures/{key}.json"
-            save_figure_json(HERE / rel, cf)
+            save_figure_json(HERE / rel, tw)
             manifest["figureFiles"][key] = rel
+
+            tw_mobile = app.create_time_windows_plot(test_id, mobile=True, percentile_mode=percentile_mode)
+            key = f"{test_id}__time_windows__mobile{suffix}"
+            rel = f"figures/{key}.json"
+            save_figure_json(HERE / rel, tw_mobile)
+            manifest["figureFiles"][key] = rel
+
+            ar = app.create_admission_routine_plot(test_id, percentile_mode=percentile_mode)
+            key = f"{test_id}__admission_routine{suffix}"
+            rel = f"figures/{key}.json"
+            save_figure_json(HERE / rel, ar)
+            manifest["figureFiles"][key] = rel
+
+            qt = app.create_quartiles_plot(test_id, percentile_mode=percentile_mode)
+            key = f"{test_id}__quartiles{suffix}"
+            rel = f"figures/{key}.json"
+            save_figure_json(HERE / rel, qt)
+            manifest["figureFiles"][key] = rel
+
+            qt_mobile = app.create_quartiles_plot(test_id, mobile=True, percentile_mode=percentile_mode)
+            key = f"{test_id}__quartiles__mobile{suffix}"
+            rel = f"figures/{key}.json"
+            save_figure_json(HERE / rel, qt_mobile)
+            manifest["figureFiles"][key] = rel
+
+            for conf in confs:
+                cf = app.create_confounder_plot(test_id, conf, percentile_mode=percentile_mode)
+                key = f"{test_id}__confounder__{conf}{suffix}"
+                rel = f"figures/{key}.json"
+                save_figure_json(HERE / rel, cf)
+                manifest["figureFiles"][key] = rel
 
     with MANIFEST_PATH.open("w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2)
