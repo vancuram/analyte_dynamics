@@ -46,6 +46,7 @@ def main() -> None:
         "confounderDisplay": app.CONFOUNDER_DISPLAY,
         "percentileModes": app.PERCENTILE_MODE_META,
         "confoundersByTest": {},
+        "confounderLabelsByTest": {},
         "figureFiles": {},
     }
 
@@ -55,6 +56,10 @@ def main() -> None:
         test_id = int(opt["value"])
         confs = app.get_available_confounders_for_test(test_id)
         manifest["confoundersByTest"][str(test_id)] = confs
+        # Per-test labels since low/high split points (e.g. CRP, fluids) are the cohort's actual median.
+        manifest["confounderLabelsByTest"][str(test_id)] = {
+            c: app.get_confounder_labels(test_id, c) for c in confs
+        }
 
         for percentile_mode in percentile_modes:
             suffix = f"__p{percentile_mode}"

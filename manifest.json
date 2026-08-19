@@ -211,6 +211,413 @@
       "fluids"
     ]
   },
+  "confounderLabelsByTest": {
+    "3024561": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 3e+03 ml",
+        "high": "> 3e+03 ml"
+      }
+    },
+    "3035995": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 2.75e+03 ml",
+        "high": "> 2.75e+03 ml"
+      }
+    },
+    "3006140": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 2.78e+03 ml",
+        "high": "> 2.78e+03 ml"
+      }
+    },
+    "3015377": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 2.68e+03 ml",
+        "high": "> 2.68e+03 ml"
+      }
+    },
+    "3020564": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 2.6e+03 ml",
+        "high": "> 2.6e+03 ml"
+      }
+    },
+    "3020460": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= 64.5 mg/dl",
+        "high": "> 64.5 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 3.15e+03 ml",
+        "high": "> 3.15e+03 ml"
+      }
+    },
+    "42869588": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 2.73e+03 ml",
+        "high": "> 2.73e+03 ml"
+      }
+    },
+    "40762351": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 2.63e+03 ml",
+        "high": "> 2.63e+03 ml"
+      }
+    },
+    "3032080": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 2.74e+03 ml",
+        "high": "> 2.74e+03 ml"
+      }
+    },
+    "3012095": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 2.58e+03 ml",
+        "high": "> 2.58e+03 ml"
+      }
+    },
+    "3003458": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 2.62e+03 ml",
+        "high": "> 2.62e+03 ml"
+      }
+    },
+    "3007461": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 2.67e+03 ml",
+        "high": "> 2.67e+03 ml"
+      }
+    },
+    "3000285": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= 36 mg/dl",
+        "high": "> 36 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 3.24e+03 ml",
+        "high": "> 3.24e+03 ml"
+      }
+    },
+    "43534077": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 2.56e+03 ml",
+        "high": "> 2.56e+03 ml"
+      }
+    },
+    "3010813": {
+      "alb": {
+        "name": "Albumin",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "blood": {
+        "name": "Blood",
+        "low": "None administered",
+        "high": "Administered"
+      },
+      "crp": {
+        "name": "CRP",
+        "low": "<= -1 mg/dl",
+        "high": "> -1 mg/dl"
+      },
+      "crrt": {
+        "name": "CRRT",
+        "low": "Not used",
+        "high": "Used"
+      },
+      "fluids": {
+        "name": "Fluids",
+        "low": "<= 2.64e+03 ml",
+        "high": "> 2.64e+03 ml"
+      }
+    }
+  },
   "figureFiles": {
     "3024561__time_windows__p95": "figures/3024561__time_windows__p95.json",
     "3024561__time_windows__mobile__p95": "figures/3024561__time_windows__mobile__p95.json",

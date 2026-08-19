@@ -196,8 +196,9 @@
       confounderSelect.innerHTML = "";
       if (state.plotType === "confounder" && confMap.length > 0) {
         confounderSelect.disabled = false;
+        const labelsForTest = state.manifest.confounderLabelsByTest?.[String(state.testId)] || {};
         for (const c of confMap) {
-          const meta = state.manifest.confounderDisplay[c] || { name: c.toUpperCase() };
+          const meta = labelsForTest[c] || state.manifest.confounderDisplay[c] || { name: c.toUpperCase() };
           const opt = document.createElement("option");
           opt.value = c;
           opt.textContent = meta.name;
@@ -257,7 +258,8 @@
         } else if (state.plotType === "quartiles") {
           infoText.textContent = `Four subplots of admissions split by quartiles of the measurement's first value. Band: ${qLabel}.`;
         } else {
-          const meta = state.manifest.confounderDisplay[state.confounder] || { name: state.confounder, low: "Low", high: "High" };
+          const labelsForTest = state.manifest.confounderLabelsByTest?.[String(state.testId)] || {};
+          const meta = labelsForTest[state.confounder] || state.manifest.confounderDisplay[state.confounder] || { name: state.confounder, low: "Low", high: "High" };
           infoText.textContent = `${meta.name}: ${meta.low} vs ${meta.high}. Band: ${qLabel}.`;
         }
       } catch (err) {
