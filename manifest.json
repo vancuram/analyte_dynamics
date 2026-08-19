@@ -225,8 +225,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 72.0 mg/dl",
+        "high": "> 72.0 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -235,8 +235,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 3e+03 ml",
-        "high": "> 3e+03 ml"
+        "low": "<= 2,996 ml",
+        "high": "> 2,996 ml"
       }
     },
     "3035995": {
@@ -252,8 +252,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 78.0 mg/dl",
+        "high": "> 78.0 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -262,8 +262,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 2.75e+03 ml",
-        "high": "> 2.75e+03 ml"
+        "low": "<= 2,750 ml",
+        "high": "> 2,750 ml"
       }
     },
     "3006140": {
@@ -279,8 +279,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 77.0 mg/dl",
+        "high": "> 77.0 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -289,8 +289,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 2.78e+03 ml",
-        "high": "> 2.78e+03 ml"
+        "low": "<= 2,775 ml",
+        "high": "> 2,775 ml"
       }
     },
     "3015377": {
@@ -306,8 +306,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 75.7 mg/dl",
+        "high": "> 75.7 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -316,8 +316,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 2.68e+03 ml",
-        "high": "> 2.68e+03 ml"
+        "low": "<= 2,677 ml",
+        "high": "> 2,677 ml"
       }
     },
     "3020564": {
@@ -333,8 +333,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 72.4 mg/dl",
+        "high": "> 72.4 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -343,8 +343,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 2.6e+03 ml",
-        "high": "> 2.6e+03 ml"
+        "low": "<= 2,604 ml",
+        "high": "> 2,604 ml"
       }
     },
     "3020460": {
@@ -360,8 +360,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= 64.5 mg/dl",
-        "high": "> 64.5 mg/dl"
+        "low": "<= 70.3 mg/dl",
+        "high": "> 70.3 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -370,8 +370,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 3.15e+03 ml",
-        "high": "> 3.15e+03 ml"
+        "low": "<= 3,150 ml",
+        "high": "> 3,150 ml"
       }
     },
     "42869588": {
@@ -387,8 +387,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 74.0 mg/dl",
+        "high": "> 74.0 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -397,8 +397,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 2.73e+03 ml",
-        "high": "> 2.73e+03 ml"
+        "low": "<= 2,734 ml",
+        "high": "> 2,734 ml"
       }
     },
     "40762351": {
@@ -414,8 +414,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 69.0 mg/dl",
+        "high": "> 69.0 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -424,8 +424,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 2.63e+03 ml",
-        "high": "> 2.63e+03 ml"
+        "low": "<= 2,631 ml",
+        "high": "> 2,631 ml"
       }
     },
     "3032080": {
@@ -441,8 +441,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 66.0 mg/dl",
+        "high": "> 66.0 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -451,8 +451,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 2.74e+03 ml",
-        "high": "> 2.74e+03 ml"
+        "low": "<= 2,742 ml",
+        "high": "> 2,742 ml"
       }
     },
     "3012095": {
@@ -468,8 +468,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 73.4 mg/dl",
+        "high": "> 73.4 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -478,8 +478,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 2.58e+03 ml",
-        "high": "> 2.58e+03 ml"
+        "low": "<= 2,576 ml",
+        "high": "> 2,576 ml"
       }
     },
     "3003458": {
@@ -495,8 +495,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 74.0 mg/dl",
+        "high": "> 74.0 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -505,8 +505,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 2.62e+03 ml",
-        "high": "> 2.62e+03 ml"
+        "low": "<= 2,621 ml",
+        "high": "> 2,621 ml"
       }
     },
     "3007461": {
@@ -522,8 +522,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 69.1 mg/dl",
+        "high": "> 69.1 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -532,8 +532,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 2.67e+03 ml",
-        "high": "> 2.67e+03 ml"
+        "low": "<= 2,667 ml",
+        "high": "> 2,667 ml"
       }
     },
     "3000285": {
@@ -549,8 +549,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= 36 mg/dl",
-        "high": "> 36 mg/dl"
+        "low": "<= 68.0 mg/dl",
+        "high": "> 68.0 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -559,8 +559,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 3.24e+03 ml",
-        "high": "> 3.24e+03 ml"
+        "low": "<= 3,238 ml",
+        "high": "> 3,238 ml"
       }
     },
     "43534077": {
@@ -576,8 +576,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 74.8 mg/dl",
+        "high": "> 74.8 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -586,8 +586,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 2.56e+03 ml",
-        "high": "> 2.56e+03 ml"
+        "low": "<= 2,562 ml",
+        "high": "> 2,562 ml"
       }
     },
     "3010813": {
@@ -603,8 +603,8 @@
       },
       "crp": {
         "name": "CRP",
-        "low": "<= -1 mg/dl",
-        "high": "> -1 mg/dl"
+        "low": "<= 69.5 mg/dl",
+        "high": "> 69.5 mg/dl"
       },
       "crrt": {
         "name": "CRRT",
@@ -613,8 +613,8 @@
       },
       "fluids": {
         "name": "Fluids",
-        "low": "<= 2.64e+03 ml",
-        "high": "> 2.64e+03 ml"
+        "low": "<= 2,635 ml",
+        "high": "> 2,635 ml"
       }
     }
   },
